@@ -1,0 +1,27 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+load("@io_bazel_rules_docker//container:container.bzl", "container_image")
+
+package(default_visibility = ["//visibility:public"])
+
+go_library(
+    name = "service1_lib",
+    srcs = ["main.go"],
+    importpath = "github.com/cory-evans/monorepo-example/cmd/service1",
+    visibility = ["//visibility:private"],
+    deps = ["@com_github_gin_gonic_gin//:gin"],
+)
+
+go_binary(
+    name = "service1",
+    embed = [":service1_lib"],
+    pure = "on",
+    visibility = ["//visibility:public"],
+)
+
+container_image(
+    name = "image",
+    base = "@alpine_linux_amd64//image",
+    entrypoint = ["/service1"],
+    files = [":service1"],
+    ports = ["8080/tcp"],
+)
