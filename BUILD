@@ -12,3 +12,13 @@ gazelle(
     ],
     command = "update-repos",
 )
+
+gazelle(
+    name = "gazelle-fix",
+    command = "fix",
+)
+
+gazelle(
+    name = "gazelle-update",
+    command = "update",
+)
