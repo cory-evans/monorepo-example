@@ -1,0 +1,12 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "person",
+    srcs = ["service.go"],
+    importpath = "github.com/cory-evans/monorepo-example/pkg/person",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/proto/person",
+        "@org_golang_google_grpc//:go_default_library",
+    ],
+)

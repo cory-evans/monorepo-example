@@ -6,7 +6,7 @@ go_library(
     importpath = "github.com/cory-evans/monorepo-example/cmd/person_service",
     visibility = ["//visibility:public"],
     deps = [
-        "//pkg/proto/person",
+        "//pkg/person",
         "@org_golang_google_grpc//:go_default_library",
     ],
 )
